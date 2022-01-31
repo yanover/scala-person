@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: personnes
+      MYSQL_USER: user_personnes
+      MYSQL_PASSWORD: verysecret
+
+  api:
+    depends_on:
+      - db
+    ports:
+      - "9000:9000"
+    build:
+      context: .
+      dockerfile: .
+
+volumes:
+  db_data: {}

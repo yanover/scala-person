@@ -1,0 +1,10 @@
+2022.01.31 10:10:55 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\project\scala\Personnes\.metals\lsp.trace.json or C:\Users\schoeniy\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.01.31 10:10:56 INFO  logging to file C:\project\scala\Personnes\.metals\metals.log
+2022.01.31 10:10:56 INFO  Started: Metals version 0.11.1 in workspace 'C:\project\scala\Personnes' for client Visual Studio Code 1.63.2.
+2022.01.31 10:10:56 INFO  Parse release: 1.8.0_281
+2022.01.31 10:10:56 WARN  Can't instantiate JavaInteractiveSemanticdb (version: Some(JdkVersion(1,8)), jdkHome: C:\Program Files\Java\jre1.8.0_281, javac exists: false)
+2022.01.31 10:10:56 INFO  time: initialize in 0.4s
+2022.01.31 10:10:57 WARN  Build server is not auto-connectable.
+2022.01.31 10:59:47 WARN  no build target for: C:\project\scala\Personnes\build.sbt
+2022.01.31 10:59:50 INFO  no build target found for C:\project\scala\Personnes\build.sbt. Using presentation compiler with project's scala-library version: 3.1.0
+2022.01.31 10:59:54 INFO  time: code lens generation in 6.26s
