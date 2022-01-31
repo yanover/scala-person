@@ -8,3 +8,7 @@
 2022.01.31 10:59:47 WARN  no build target for: C:\project\scala\Personnes\build.sbt
 2022.01.31 10:59:50 INFO  no build target found for C:\project\scala\Personnes\build.sbt. Using presentation compiler with project's scala-library version: 3.1.0
 2022.01.31 10:59:54 INFO  time: code lens generation in 6.26s
+janv. 31, 2022 11:47:22 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFOS: Unsupported notification method: $/setTrace
+janv. 31, 2022 11:47:22 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFOS: Unsupported notification method: $/setTrace
