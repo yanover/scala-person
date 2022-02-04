@@ -5,6 +5,11 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
+GET     /personnes/:id              controllers.PersonnesController.get(id: Int)
+GET     /personnes                  controllers.PersonnesController.getAll()
+POST    /personnes                  controllers.PersonnesController.create()
+DELETE  /personnes/:id              controllers.PersonnesController.delete(id: Int)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
