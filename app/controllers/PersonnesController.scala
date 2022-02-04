@@ -11,23 +11,17 @@ import play.api.libs.json._
  * application's personne controller.
  */
 @Singleton
-class PersonnesController @Inject()(
-                                    val controllerComponents: ControllerComponents,
-                                    val personnesService: PersonnesRepository) extends BaseController {
+class PersonnesController @Inject()(val controllerComponents: ControllerComponents, val service: PersonnesRepository) extends BaseController {
+                                    
   
 def get(id: Int) = Action { implicit request: Request[AnyContent] =>
-
-
-
-    println(s"Getting personne $id")
-    val numbers: List[Int] = List(1,2,3,4)
-    Ok(Json.toJson(numbers));
+    println(s"Get personne $id")
+    Ok(Json.toJson(service.retrieve(id)));
   }
 
   def getAll() = Action { implicit request: Request[AnyContent] =>
     println(s"Getting all personnes")
-    val numbers: List[Int] = List(1,2,3,4)
-    Ok(Json.toJson(numbers));
+    Ok(Json.toJson(service.retrieve()));
   }
 
   def create() = Action { implicit request: Request[AnyContent] =>
@@ -38,8 +32,7 @@ def get(id: Int) = Action { implicit request: Request[AnyContent] =>
 
   def delete(id: Int) = Action { implicit request: Request[AnyContent] =>
     println(s"Delete personne $id")
-    val numbers: List[Int] = List(1,2,3,4)
-    Ok(Json.toJson(numbers));
+    Ok(Json.toJson(service.delete(id)));
   }
 
 }
