@@ -1,6 +1,11 @@
 # scala-personnes
-A user management API
+This tiny application let you save user into a MySql Database
 
+Each user is describe as follow : 
+* Id : Long
+* Username: String
+* Age : Int
+* Job: String
 
 ## Purpose of this project
 The aim of this project is to extend my skills with the following stack: 
