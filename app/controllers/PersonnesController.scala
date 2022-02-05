@@ -4,47 +4,15 @@ import models._
 import javax.inject._
 import play.api._
 import play.api.mvc._
-import play.api.libs.json._
+import service.PersonneService
+import model.{Personne, PersonneForm}
 
-/**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's personne controller.
- */
-@Singleton
-class PersonnesController @Inject()(val controllerComponents: ControllerComponents, val service: PersonnesRepository) extends BaseController {
-                                    
-  
-def get(id: Int) = Action { implicit request: Request[AnyContent] =>
-    println(s"Get personne $id")
-    Ok(Json.toJson(service.retrieve(id)));
-  }
+class PersonneController extends Controller {
 
-  def getAll() = Action { implicit request: Request[AnyContent] =>
-    println(s"Getting all personnes")
-    Ok(Json.toJson(service.retrieve()));
-  }
-
-  def create() = Action { implicit request: Request[AnyContent] =>
-    println(s"Creating personne")
-    
-    val body: AnyContent = request.body
-    val jsonBody: Option[JsValue] = body.asJson
-    
-    for(json <- jsonBody) {
-      val username = (json \ "username").as[String]
-      val age = (json \ "age").as[Int]
-      val job = (json \ "job").as[String]
-      service.create(username, age, job)
+  def getAll = Action.async { implicit request =>
+    PersonneService.listAll map { users =>
+      Ok("TEST")
     }
-    Ok(Json.toJson(service.retrieve()));
-  }
-
-  def delete(id: Int) = Action { implicit request: Request[AnyContent] =>
-    println(s"Delete personne $id")
-    Ok(Json.toJson(service.delete(id)));
   }
 
 }
-
-
-
