@@ -26,8 +26,17 @@ def get(id: Int) = Action { implicit request: Request[AnyContent] =>
 
   def create() = Action { implicit request: Request[AnyContent] =>
     println(s"Creating personne")
-    val numbers: List[Int] = List(1,2,3,4)
-    Ok(Json.toJson(numbers));
+    
+    val body: AnyContent = request.body
+    val jsonBody: Option[JsValue] = body.asJson
+    
+    for(json <- jsonBody) {
+      val username = (json \ "username").as[String]
+      val age = (json \ "age").as[Int]
+      val job = (json \ "job").as[String]
+      service.create(username, age, job)
+    }
+    Ok(Json.toJson(service.retrieve()));
   }
 
   def delete(id: Int) = Action { implicit request: Request[AnyContent] =>
