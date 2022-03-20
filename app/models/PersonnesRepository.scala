@@ -1,7 +1,7 @@
 package models
 
-import scala.collection.mutable.ListBuffer
 import play.api.libs.json._
+import scala.collection.mutable.ListBuffer
 
 case class Personne(id: Long, username: String, age: Int, job: String)
 
@@ -33,26 +33,16 @@ class PersonnesRepository {
 
   def retrieve(id: Int): Personne = personnes.filter(p => p.id == id).head
 
-  def create(username: String, age: Int, job: String) = {
+  def create(username: String, age: Int, job: String): ListBuffer[Personne] = {
 
-    // Is this username already somewhere in the list ?
-
-    personnes.find(p => p.username == username) match {
-      case None => {
-        personnes.addOne(
-          Personne(
-            personnes.last.id + 1,
-            username,
-            age,
-            job
-          )
-        )
-      }
-      case _ => {
-        print(s"Username $username already exist in the list") 
-        throw new RuntimeException(s"Username $username already exist in the list")
-      }
+    if ((personnes.find(_.username == username)).isDefined) {
+      println("Error, already eaxist")
     }
+
+    // Add person
+    personnes.addOne(Personne(5, username, age, job))
+
+    return personnes
 
   }
 
