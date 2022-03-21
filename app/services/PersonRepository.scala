@@ -1,7 +1,10 @@
 package services
 
 import models._
+import play.api._
+import play.api.mvc._
 import play.api.libs.json._
+import play.api.mvc.Results._
 import scala.collection.mutable.ListBuffer
 
 @javax.inject.Singleton
@@ -17,7 +20,13 @@ class PersonRepository {
 
   def retrieve(): ListBuffer[Person] = persons
 
-  def retrieve(id: Int): Person = persons.filter(p => p.id == id).head
+  def retrieve(id: Int) = {
+    try {
+        Some(persons.filter(_.id == id).head)
+    } catch {
+        case e: Exception => NotFound("Not found")
+    }
+  }
 
   def create(username: String, age: Int, job: String): ListBuffer[Person] = {
 
@@ -32,8 +41,11 @@ class PersonRepository {
 
   }
 
-  def delete(id: Int): ListBuffer[Person] = {
-    persons = persons.filter(p => p.id != id)
-    persons
+  def delete(id: Int): Option[Person] = {
+        try {
+            Some(persons.filter(p => p.id != id).head)
+        } catch {
+            case e: Exception => None
+        }
   }
 }
