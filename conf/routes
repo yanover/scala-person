@@ -5,10 +5,10 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
-GET     /personnes/:id              controllers.PersonController.get(id: Int)
-GET     /personnes                  controllers.PersonController.getAll()
-POST    /personnes                  controllers.PersonController.create()
-DELETE  /personnes/:id              controllers.PersonController.delete(id: Int)
+GET     /persons/:id                controllers.PersonController.get(id: Int)
+GET     /persons                    controllers.PersonController.getAll()
+POST    /persons                    controllers.PersonController.create()
+DELETE  /persons/:id                controllers.PersonController.delete(id: Int)
 
 
 # Map static resources from the /public folder to the /assets URL path

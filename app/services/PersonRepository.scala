@@ -18,34 +18,34 @@ class PersonRepository {
     Person(5, "michel", 60, "Data Engineer")
   )
 
+  private def getLastId(): Long = {
+    this.persons(this.persons.length-1).id + 1
+  }
+
   def retrieve(): ListBuffer[Person] = persons
 
-  def retrieve(id: Int) = {
+  def retrieve(id: Int): Person = {
     try {
-        Some(persons.filter(_.id == id).head)
+        persons.filter(_.id == id).head
     } catch {
-        case e: Exception => NotFound("Not found")
+        case e: Exception => throw e
     }
   }
 
   def create(username: String, age: Int, job: String): ListBuffer[Person] = {
-
-    if ((persons.find(_.username == username)).isDefined) {
-      println("Error, already eaxist")
+    if (!(persons.find(_.username == username)).isDefined) {
+      persons.addOne(Person(6, username, age, job))
     }
-
-    // Add person
-    persons.addOne(Person(5, username, age, job))
-
     return persons
-
   }
 
-  def delete(id: Int): Option[Person] = {
+  def delete(id: Int): ListBuffer[Person] = {
         try {
-            Some(persons.filter(p => p.id != id).head)
+            val idx = this.persons.indexWhere(_.id  == id)
+            if(idx >= 0) this.persons.remove(idx, 1)
+            this.retrieve()
         } catch {
-            case e: Exception => None
+             case e: Exception => throw e
         }
   }
 }

@@ -12,22 +12,22 @@ import play.api.libs.json._
  * application's person controller.
  */
 @Singleton
-class PersonController @Inject()(val controllerComponents: ControllerComponents, val service: PersonRepository) extends BaseController {
+class PersonController @Inject()(
+  val controllerComponents: ControllerComponents,
+  val service: PersonRepository, 
+  val errorHandler: ErrorController
+) extends BaseController {
                                     
   
-def get(id: Int) = Action { implicit request: Request[AnyContent] =>
-    println(s"Get person $id")
+  def get(id: Int) = Action { implicit request: Request[AnyContent] =>
     Ok(Json.toJson(service.retrieve(id)));
   }
 
   def getAll() = Action { implicit request: Request[AnyContent] =>
-    println(s"Getting all persons")
     Ok(Json.toJson(service.retrieve()));
   }
 
   def create() = Action { implicit request: Request[AnyContent] =>
-    println(s"Creating person")
-    
     val body: AnyContent = request.body
     val jsonBody: Option[JsValue] = body.asJson
     
@@ -37,6 +37,7 @@ def get(id: Int) = Action { implicit request: Request[AnyContent] =>
       val job = (json \ "job").as[String]
       service.create(username, age, job)
     }
+
     Ok(Json.toJson(service.retrieve()));
   }
 
