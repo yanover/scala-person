@@ -2,6 +2,7 @@ package services
 
 import models._
 import play.api._
+import io.jvm.uuid._
 import play.api.mvc._
 import play.api.libs.json._
 import play.api.mvc.Results._
@@ -11,16 +12,15 @@ import scala.collection.mutable.ListBuffer
 class PersonRepository {
 
   var persons: ListBuffer[Person] = ListBuffer(
-    Person(1, "john", 23, "Software Engineer"),
-    Person(2, "carlos", 53, "Tech Engineer"),
-    Person(3, "lucy", 22, "Software Engineer"),
-    Person(4, "margarette", 45, "Data Scientist"),
-    Person(5, "michel", 60, "Data Engineer")
+    Person(getId, "john", 23, "Software Engineer"),
+    Person(getId, "carlos", 53, "Tech Engineer"),
+    Person(getId, "lucy", 22, "Software Engineer"),
+    Person(getId, "margarette", 45, "Data Scientist"),
+    Person(getId, "michel", 60, "Data Engineer")
   )
 
-  private def getLastId(): Long = {
-    this.persons(this.persons.length-1).id + 1
-  }
+
+  def getId = UUID.random.string
 
   def retrieve(): ListBuffer[Person] = persons
 
@@ -34,7 +34,7 @@ class PersonRepository {
 
   def create(username: String, age: Int, job: String): ListBuffer[Person] = {
     if (!(persons.find(_.username == username)).isDefined) {
-      persons.addOne(Person(6, username, age, job))
+      persons.addOne(Person(getId, username, age, job))
     }
     return persons
   }

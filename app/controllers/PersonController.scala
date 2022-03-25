@@ -37,7 +37,6 @@ class PersonController @Inject()(
       val job = (json \ "job").as[String]
       service.create(username, age, job)
     }
-
     Ok(Json.toJson(service.retrieve()));
   }
 
