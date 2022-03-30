@@ -4,9 +4,9 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index()
+GET     /persons                    controllers.PersonController.find(criteria: String, value: String)
+GET     /persons/all                controllers.PersonController.getAll()
 GET     /persons/:id                controllers.PersonController.get(id: Int)
-GET     /persons                    controllers.PersonController.getAll()
 POST    /persons                    controllers.PersonController.create()
 DELETE  /persons/:id                controllers.PersonController.delete(id: Int)
 

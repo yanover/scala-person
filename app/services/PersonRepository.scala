@@ -48,4 +48,15 @@ class PersonRepository {
              case e: Exception => throw e
         }
   }
+
+  def findByCriteria(criteria: String, value: String): ListBuffer[Person] = {
+    print(criteria)
+    criteria match {
+      case "username" => this.persons.filter(_.username == value)
+      case "job" => this.persons.filter(_.job == value)
+      case _ => ListBuffer()
+    } 
+
+  }
+
 }

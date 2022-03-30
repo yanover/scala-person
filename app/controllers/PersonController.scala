@@ -27,6 +27,10 @@ class PersonController @Inject()(
     Ok(Json.toJson(service.retrieve()));
   }
 
+  def find(criteria: String, value: String) = Action { implicit request : Request[AnyContent] => 
+    Ok(Json.toJson(service.findByCriteria(criteria, value)));
+  }
+
   def create() = Action { implicit request: Request[AnyContent] =>
     val body: AnyContent = request.body
     val jsonBody: Option[JsValue] = body.asJson
@@ -44,6 +48,8 @@ class PersonController @Inject()(
     println(s"Delete person $id")
     Ok(Json.toJson(service.delete(id)));
   }
+
+
 
 }
 

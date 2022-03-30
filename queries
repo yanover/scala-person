@@ -1,0 +1,1 @@
+curl http://localhost:9000/persons -d "{username:carlos,age:53,job:Tech Engineer}" -H "content-type: application/json"
